@@ -52,7 +52,7 @@ function addSchemeSteps(steps) {
 				return getSchemeStepsByID(id);
 			})
 	);
-}
+} // Not working
 
 function updateScheme(id, changes) {
 	return db("schemes")
@@ -61,8 +61,8 @@ function updateScheme(id, changes) {
 		.then(() => {
 			return getSchemeByID(id);
 		});
-}
+} // WORKING
 
 function deleteScheme(id) {
 	return db("schemes").where({ id }).del();
-}
+} // WORKING

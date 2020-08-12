@@ -81,16 +81,16 @@ router.post("/:id/steps", (req, res) => {
 		.catch((err) => {
 			res.status(500).json({ message: "Failed to create new step" });
 		});
-});
+}); // Not working
 
 router.put("/:id", (req, res) => {
 	const { id } = req.params;
 	const changes = req.body;
 
-	Schemes.findById(id)
+	Schemes.getSchemeByID(id)
 		.then((scheme) => {
 			if (scheme) {
-				Schemes.update(changes, id).then((updatedScheme) => {
+				Schemes.updateScheme(id, changes).then((updatedScheme) => {
 					res.json(updatedScheme);
 				});
 			} else {
@@ -102,12 +102,12 @@ router.put("/:id", (req, res) => {
 		.catch((err) => {
 			res.status(500).json({ message: "Failed to update scheme" });
 		});
-});
+}); // WORKING
 
 router.delete("/:id", (req, res) => {
 	const { id } = req.params;
 
-	Schemes.remove(id)
+	Schemes.deleteScheme(id)
 		.then((deleted) => {
 			if (deleted) {
 				res.json({ removed: deleted });
@@ -120,6 +120,6 @@ router.delete("/:id", (req, res) => {
 		.catch((err) => {
 			res.status(500).json({ message: "Failed to delete scheme" });
 		});
-});
+}); // WORKING
 
 module.exports = router;
